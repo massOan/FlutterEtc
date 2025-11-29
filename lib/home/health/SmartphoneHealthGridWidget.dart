@@ -6,7 +6,7 @@ class SmartphoneHealthGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -111,20 +111,6 @@ class _BatteryCard extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  // 바깥 링
-                  SizedBox(
-                    width: 64,
-                    height: 64,
-                    child: CircularProgressIndicator(
-                      value: 0.8,
-                      strokeWidth: 6,
-                      backgroundColor: const Color(0xFFE5E7EB),
-                      valueColor: const AlwaysStoppedAnimation<Color>(
-                        Color(0xFF22C55E),
-                      ),
-                    ),
-                  ),
-                  // 안쪽 흰색 원 (도넛 효과)
                   Container(
                     width: 44,
                     height: 44,
@@ -134,15 +120,6 @@ class _BatteryCard extends StatelessWidget {
                     ),
                   ),
                   // 퍼센트 텍스트
-                  const Text(
-                    '80%',
-                    style: TextStyle(
-                      fontFamily: 'Pretendard',
-                      fontWeight: FontWeight.w800,
-                      fontSize: 16, // 14~16 사이가 딱 보기 좋음
-                      color: Color(0xFF16A34A),
-                    ),
-                  ),
                 ],
               ),
             ),

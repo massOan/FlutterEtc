@@ -9,10 +9,9 @@ import 'package:flutteretc/home/lifestyle/home_lifestyle_widget.dart';
 import 'package:flutteretc/home/mobilereport/home_mobilereport_widget.dart';
 import 'package:flutteretc/home/propose/home_propose_widget.dart';
 import 'package:flutteretc/home/tooltipbanner/home_details_tooltipbanner_widget.dart';
-
 import '../api/model/main_screen.dart';
-import 'health/SmartphoneHealthScreen.dart';
-// import 'package:flutteretc/menu/home_menu.dart';
+import 'health/SmartphoneHealthGridWidget.dart';
+import 'menu/HomeMainMenuWidget.dart';
 
 const Color fabColor = Color(0xFF3B4044);
 final showFabProvider = StateProvider<bool>((ref) => false);
@@ -65,8 +64,8 @@ class HomeScreen extends ConsumerWidget {
             ),
           ],
         ),
-        // endDrawer:
-        // Drawer(backgroundColor: Colors.blue, child: HomeMainMenuWidget()),
+        endDrawer:
+            Drawer(backgroundColor: Colors.blue, child: HomeMainMenuWidget()),
         body: asyncMainScreen.when(
           data: (mainScreen) {
             // MainScreen 데이터를 바탕으로 홈 화면 구성
@@ -83,7 +82,7 @@ class HomeScreen extends ConsumerWidget {
                           '寒い日には、あたたかいココアを飲みながら\nほっと一息つきましょう。',
                         ],
                       ),
-                      const SmartphoneHealthGrid(),
+                      const SmartphoneHealthGridWidget(),
                       HomeDetailsGreetingWidget(
                           greetingMenu: mainScreen.greetingMenu),
                       HomeDetailsLifeStyleWidget(
