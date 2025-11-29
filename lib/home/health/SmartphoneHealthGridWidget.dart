@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SmartphoneHealthGrid extends StatelessWidget {
-  const SmartphoneHealthGrid({super.key});
+class SmartphoneHealthGridWidget extends StatelessWidget {
+  const SmartphoneHealthGridWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
