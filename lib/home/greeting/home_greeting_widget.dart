@@ -40,12 +40,12 @@ class HomeDetailsGreetingWidget extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => HomeScreen(),
+                  //   ),
+                  // );
                 },
                 child: Row(
                   children: [
@@ -90,10 +90,10 @@ class HomeDetailsGreetingWidget extends StatelessWidget {
 
               return GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                  // );
                 },
                 child: Container(
                   width: 130,

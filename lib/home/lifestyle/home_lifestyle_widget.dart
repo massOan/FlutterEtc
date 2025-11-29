@@ -79,10 +79,10 @@ class HomeDetailsLifeStyleWidget extends StatelessWidget {
                           //     detailNumber: item.lifestyleKey.toString());
                         }
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => router!),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => router!),
+                        // );
                       },
                       child: Container(
                         width: 385,
