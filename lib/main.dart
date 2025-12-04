@@ -3,6 +3,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'firebase_options.dart';
 import 'package:flutteretc/home/HomeScreen.dart';
 
 const Color primary = Color(0xffe30084);
@@ -10,14 +13,22 @@ const Color netural3 = Color(0xff66707a);
 const Color netural4 = Color(0xff525960);
 const Color netural6 = Color(0xff181a1b);
 
+late FirebaseAnalytics analytics;
+
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  analytics = FirebaseAnalytics.instance;
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
   runApp(
     ProviderScope(
       child: MobileManagerApp(),
@@ -29,7 +40,10 @@ class MobileManagerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      scrollBehavior: MyScrollBehavior(), // 👈 이 줄 추가
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
+      scrollBehavior: MyScrollBehavior(),
       home: SflashLoadPage(),
       theme: ThemeData(
         textTheme: const TextTheme(
@@ -73,12 +87,17 @@ class SflashLoadPage extends StatefulWidget {
 class _SflashLoadPageState extends State<SflashLoadPage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
-    Future.delayed(Duration(seconds: 0)).then((value) => {
-          FlutterNativeSplash.remove(),
-        });
+    Future.delayed(Duration.zero).then((_) {
+      FlutterNativeSplash.remove();
+
+      // 👇 Analytics 이벤트 로깅
+      analytics.logEvent(
+        name: 'splash_screen_loaded',
+        parameters: {'screen': 'Splash'},
+      );
+    });
   }
 
   @override
